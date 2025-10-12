@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useRef } from 'react'
+import Modal from 'react-modal'
 import darkModeButton from './assets/webp/icons8-dark-mode-50.webp'
 import githubIcon from './assets/webp/github-mark.webp'
 import linkedInIcon from './assets/webp/InBug-Black.webp'
@@ -7,6 +8,8 @@ import itchIcon from './assets/webp/itchio-logo-textless-black.webp'
 import resume from './assets/Resume_External_Web.pdf'
 
 function App() {
+  Modal.setAppElement('#root');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const portfolioRef = useRef(null);
   const homeRef = useRef(null);
   const scrollToSection = (elementRef) => {
@@ -24,7 +27,7 @@ function App() {
         <button className='links-button' onClick={() => scrollToSection(portfolioRef)}>Portfolio</button>
       </div>
       <div className="navbar-right">
-        <button className='links-contact links-button links-light'>Contact Me</button>
+        <button className='links-contact links-button links-light' onClick={() => setModalIsOpen(true)}>Contact Me</button>
         <button className='links-button'>
           <img src={darkModeButton} height={30} width={30}></img>
         </button>
@@ -91,9 +94,35 @@ function App() {
               </a>
             </div>
           </div>
-      </div>     
+      </div>   
+      <div className="popup">
+        <Modal className="contact-modal" isOpen={modalIsOpen}>
+          <div className="contact-content">
+            <div className="contact-header">
+              <div>Contact Me</div>
+              <button className="links-button" onClick={() => setModalIsOpen(false)}>[x]</button>
+            </div>
+            <div className="contact-body">
+              Thanks for wanting to contact me! Hit me up if you want to
+              collaborate on a project together.
+            </div>
+          </div>
+          <div className="contact-links">
+            <a href="https://www.linkedin.com/in/daniel-s-l/" target="_blank" rel="noopener noreferrer">
+              <button className='links-linkedin links-button'>
+                <img src={linkedInIcon} alt="LinkedIn Icon"></img>
+              </button>
+            </a>
+            <a href="https://github.com/GitWorkingTime" target="_blank" rel="noopener noreferrer">
+              <button className='links-github links-button'>
+                <img src={githubIcon} alt="GitHub Icon"></img>
+              </button>
+            </a>
+            <div className='contact-email'>daniel.lee28011@gmail.com</div>
+          </div>
+        </Modal> 
+      </div> 
     </div>
-
     </>
   )
 }
