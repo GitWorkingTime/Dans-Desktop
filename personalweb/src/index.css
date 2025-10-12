@@ -4,15 +4,33 @@
     --background: #E0E1DD;
     --text: #202124;
     --primary: #C8B6FF;
+    --glass-bg: rgba(224, 225, 221, 0.45);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
 }
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --background: #202124;
+        --text: #E0E1DD;
+        --primary: #5e4d92;
+    }
+}
+
+/* 
+Temp Storage:
+    --background: #E0E1DD;
+    --text: #202124;
+    --primary: #C8B6FF;
+    --glass-bg: rgba(224, 225, 221, 0.45);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+*/
 
 html{
     background-color: var(--background);
+    color: var(--text);
     font-family: 'JetBrains Mono', monospace;
     margin-top: clamp(3em, 10vw, 6em);
     margin-left: clamp(0.5em, 0.5vw, 1em);
-    margin-right: 1em;
-    margin-bottom: 0.5em;
     scroll-behavior: smooth;
 }
 
@@ -29,13 +47,13 @@ html{
     z-index: 100;
 
     /* From https://css.glass */
-    background: rgba(224, 225, 221, 0.45);
+    background: var(--glass-bg);
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px var(--glass-shadow);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(224, 225, 221, 0.3);
+    border: 1px solid var(--glass-bg);
 }
 
 .navbar-left{
@@ -109,14 +127,14 @@ html{
 @media (max-width: 500px){
     .project-block{
         width: clamp(225px, 12vw, 500px);
-        height: clamp(150px, 10vw, 500px);
+        height: clamp(200px, 20vw, 500px);
     }
 }
 
 @media (min-width: 501px){
     .project-block{
         width: clamp(300px, 10vw, 400px);
-        height: clamp(175px, 7vw, 300px);
+        height: clamp(180px, 7vw, 300px);
     }
 }
 
@@ -245,6 +263,7 @@ html{
 
 .links-button:hover{
     animation: grow 0.2s forwards;
+    transform: rotate(30deg);
 }
 
 

@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import Modal from 'react-modal'
-import darkModeButton from './assets/webp/icons8-dark-mode-50.webp'
-import githubIcon from './assets/webp/github-mark.webp'
+import darkModeButton from './assets/Logos/moon-6689.svg'
+import darkModeButtonDark from './assets/Logos/moon-6679.svg'
+import githubIcon from './assets/Logos/github-mark.svg'
+import githubIconDark from './assets/Logos/github-mark-white.png'
 import linkedInIcon from './assets/webp/InBug-Black.webp'
+import linkedInIconDark from './assets/Logos/InBug-White.png'
 import itchIcon from './assets/webp/itchio-logo-textless-black.webp'
+import itchIconDark from './assets/Logos/itchio-logo-textless-white.svg'
 import resume from './assets/Resume_External_Web.pdf'
 
 function App() {
   Modal.setAppElement('#root');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const portfolioRef = useRef(null);
   const homeRef = useRef(null);
   const scrollToSection = (elementRef) => {
@@ -17,6 +22,12 @@ function App() {
       top: elementRef.current.offsetTop,
       behaviour: 'smooth'
     })
+  }
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    }
   }
 
   return (
@@ -28,8 +39,11 @@ function App() {
       </div>
       <div className="navbar-right">
         <button className='links-contact links-button links-light' onClick={() => setModalIsOpen(true)}>Contact Me</button>
-        <button className='links-button'>
-          <img src={darkModeButton} height={30} width={30}></img>
+        <button className='links-button' onClick={() => setIsDarkMode(prev => !prev)}>
+          {/* <picture>
+            <source srcSet={darkModeButtonDark} media="(prefers-color-scheme: dark)"></source>
+            <img src={darkModeButton} height={30} width={30}></img>
+          </picture> */}
         </button>
       </div>
     </div>
@@ -50,17 +64,26 @@ function App() {
           </a>
           <a href="https://github.com/GitWorkingTime" target="_blank" rel="noopener noreferrer">
             <button className='links-github links-button'>
-              <img src={githubIcon} height={40} width={40} alt="GitHub Icon"></img>
+              <picture>
+                <source srcSet={githubIconDark} media="(prefers-color-scheme: dark)"></source>
+                <img src={githubIcon} height={40} width={40} alt="GitHub Icon"></img>
+              </picture>
             </button>
           </a>
           <a href="https://www.linkedin.com/in/daniel-s-l/" target="_blank" rel="noopener noreferrer">
             <button className='links-linkedin links-button'>
-              <img src={linkedInIcon} height={40} width={40} alt="LinkedIn Icon"></img>
+              <picture>
+                <source srcSet={linkedInIconDark} media="(prefers-color-scheme: dark)"></source>
+                <img src={linkedInIcon} height={40} width={40} alt="LinkedIn Icon"></img>
+              </picture>
             </button>
           </a>
           <a href="https://doopsgame.itch.io/" target="_blank" rel="noopener noreferrer">
             <button className='links-itch links-button'>
-              <img src={itchIcon} height={40} width={40} alt="Itch.io Icon"></img>
+              <picture>
+                <source srcSet={itchIconDark} media="(prefers-color-scheme: dark)"></source>
+                <img src={itchIcon} height={40} width={40} alt="Itch.io Icon"></img>
+              </picture>
             </button>
           </a>
         </div>
@@ -96,7 +119,7 @@ function App() {
           </div>
       </div>   
       <div className="popup">
-        <Modal className="contact-modal" isOpen={modalIsOpen}>
+        <Modal className="contact-modal" isOpen={modalIsOpen} style={customStyles}>
           <div className="contact-content">
             <div className="contact-header">
               <div>Contact Me</div>
@@ -110,12 +133,18 @@ function App() {
           <div className="contact-links">
             <a href="https://www.linkedin.com/in/daniel-s-l/" target="_blank" rel="noopener noreferrer">
               <button className='links-linkedin links-button'>
-                <img src={linkedInIcon} alt="LinkedIn Icon"></img>
+                <picture>
+                  <source srcSet={linkedInIconDark} media="(prefers-color-scheme: dark)"></source>
+                  <img src={linkedInIcon} alt="LinkedIn Icon"></img>
+                </picture>
               </button>
             </a>
             <a href="https://github.com/GitWorkingTime" target="_blank" rel="noopener noreferrer">
               <button className='links-github links-button'>
-                <img src={githubIcon} alt="GitHub Icon"></img>
+                <picture>
+                  <source srcSet={githubIconDark} media="(prefers-color-scheme: dark)"></source>
+                  <img src={githubIcon} alt="GitHub Icon"></img>
+                </picture>
               </button>
             </a>
             <div className='contact-email'>daniel.lee28011@gmail.com</div>
