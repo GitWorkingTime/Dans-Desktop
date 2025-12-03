@@ -9,7 +9,7 @@ import linkedInIcon from './assets/webp/InBug-Black.webp'
 import linkedInIconDark from './assets/Logos/InBug-White.png'
 import itchIcon from './assets/webp/itchio-logo-textless-black.webp'
 import itchIconDark from './assets/Logos/itchio-logo-textless-white.svg'
-import resume from './assets/Resume_External_Web.pdf'
+import resume from './assets/Daniel_Lee_Resume.pdf'
 
 function App() {
   Modal.setAppElement('#root');
